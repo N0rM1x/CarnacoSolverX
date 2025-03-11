@@ -1,0 +1,20 @@
+name: CarnacoSolverX
+version: '1.0-R'
+main: me.N0rM1x.carnacoSolverX.CarnacoSolverX
+api-version: '1.21'
+load: STARTUP
+authors: [ N0rM1x ]
+description: Ya sral 5 raz, poka pisal etot plugin
+prefix: CSX
+commands:
+  prefix:
+    description: Команда для смены префикса
+    usage: /prefix <set/clear> <игрок> [префикс]
+  suffix:
+    description: Команда для смены суффикса
+    usage: /suffix <set/clear> <игрок> [суффикс]
+  chatcolor:
+    description: Команда для смены цвет чата
+    usage: /chatcolor <set/clear> <игрок> [цвет чата]
+listeners:
+  - class: me.N0rM1x.carnacoSolverX.listeners.ChatListener

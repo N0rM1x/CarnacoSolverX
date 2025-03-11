@@ -1,0 +1,28 @@
+# =========================
+# %prefix% - префикс игрока
+# %player% - настоящий ник игрока
+# %suffix% - суффикс игрока
+# %message% - сообщение, отправленное игроком
+# %chatcolor% - цвет содержимого сообщения
+# =========================
+
+
+chats:
+  default:
+    style: "%prefix%%player%%suffix%&f » %chatcolor%%message%"
+
+tablist:
+  default:
+    style: "%prefix%%player%%suffix%"
+
+prefixes:
+  default:
+    prefix: "&7ИГРОК &f"
+
+suffixes:
+  default:
+    suffix: ""
+
+chatcolor:
+  default:
+    color: "&r"
