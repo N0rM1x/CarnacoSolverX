@@ -33,4 +33,4 @@ bruh, this name sound funny asf
 ## Info
 
 If you have some suggestions or want support for some languages, feel free to tell about that in Discussion tab.
-Plugin made for Minecraft 1.21.4, works on Paper and Purpur (IDK if it works on Spigot, but it should I guess)
+Plugin made for Minecraft 1.21.4, works on Paper and Purpur
