@@ -1,0 +1,35 @@
+chatcolor_command:
+  # %playerName% - Player's name
+  # %chatColor% - The set chat color
+  usage: "&cUsage: /chatcolor <set/clear> <player> [chat color]"
+  no_arguments: "&cYou must specify an action (set/clear)."
+  no_playername: "&cYou must specify the player's name."
+  no_content: "&cYou must specify the chat color for the player."
+  set_failed: "&cFailed to set the chat color!"
+  set_success: "&aSuccessfully set the chat color for player &f%playerName%&a to: &r%chatColor%⬛&a!"
+  clear_failed: "&cFailed to remove the chat color!"
+  clear_success: "&aSuccessfully removed the chat color for player &f%playerName%&a!"
+
+prefix_command:
+  # %playerName% - Player's name
+  # %prefix% - The set prefix
+  usage: "&cUsage: /prefix <set/clear> <player> [prefix]"
+  no_arguments: "&cYou must specify an action (set/clear)."
+  no_playername: "&cYou must specify the player's name."
+  no_content: "&cYou must specify a prefix for the player."
+  set_failed: "&cFailed to set the prefix!"
+  set_success: "&aSuccessfully set the prefix for player &f%playerName%&a to: &r%prefix%%playerName%&a!"
+  clear_failed: "&cFailed to remove the prefix!"
+  clear_success: "&aSuccessfully removed the prefix for player &f%playerName%&a!"
+
+suffix_command:
+  # %playerName% - Player's name
+  # %suffix% - The set suffix
+  usage: "&cUsage: /suffix <set/clear> <player> [suffix]"
+  no_arguments: "&cYou must specify an action (set/clear)."
+  no_playername: "&cYou must specify the player's name."
+  no_content: "&cYou must specify a suffix for the player."
+  set_failed: "&cFailed to set the suffix!"
+  set_success: "&aSuccessfully set the suffix for player &f%playerName%&a to: &r%playerName%%suffix%&a!"
+  clear_failed: "&cFailed to remove the suffix!"
+  clear_success: "&aSuccessfully removed the suffix for player &f%playerName%&a!"

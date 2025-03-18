@@ -3,10 +3,12 @@ package me.N0rM1x.carnacoSolverX.additional;
 import me.N0rM1x.carnacoSolverX.CarnacoSolverX;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +34,10 @@ public class ChatManager implements Listener {
 
     private final Map<String, String> colorMap = new HashMap<>();
 
-    public ChatManager(CarnacoSolverX carnacoSolverX) {
+    private static YamlConfiguration messageConfig;
+    private static  String lang;
+
+    public ChatManager(CarnacoSolverX carnacoSolverX, String lang) {
         logger = carnacoSolverX.getLogger();
         configFile = carnacoSolverX.getConfigFile();
         config = YamlConfiguration.loadConfiguration(configFile);
@@ -41,9 +46,9 @@ public class ChatManager implements Listener {
             try {
                 boolean fileCreated = stylesConfigFile.createNewFile();
                 if (fileCreated) {
-                    logger.info("Файл успешно создан!");
+                    logger.info("File created successfully!");
                 } else {
-                    logger.severe("Файл уже существует.");
+                    logger.severe("File already exists!.");
                 }
                 stylesConfig = YamlConfiguration.loadConfiguration(stylesConfigFile);
                 stylesConfig.createSection("player-prefixes");
@@ -51,12 +56,12 @@ public class ChatManager implements Listener {
                 stylesConfig.createSection("player-chat-color");
                 saveStylesConfig();
             } catch (IOException e) {
-                logger.severe("Не удалось создать player-styles.yml!");
-                logger.severe("Произошла ошибка: " + e.getMessage());
+                logger.severe("Failed to create player-styles.yml!");
+                logger.severe(e.getMessage());
             }
         } else {
             stylesConfig = YamlConfiguration.loadConfiguration(stylesConfigFile);
-            logger.info("Конфигурация стилей загружена успешно!");
+            logger.info("Styles config loaded successfully!");
         }
         tablistConfigStyle = carnacoSolverX.getConfig().getString("tablist.default.style", "&c[ERR]&r %playername%");
         chatConfigStyle = carnacoSolverX.getConfig().getString("chats.default.style", "&c[ERR]&r %playername% » %message%");
@@ -72,14 +77,35 @@ public class ChatManager implements Listener {
         for (String key : config.getKeys(false)) {
             colorMap.put(key, config.getString(key));
         }
+        File messagesFile = new File(carnacoSolverX.getDataFolder() + "/message_lang/", lang);
+        if (!messagesFile.exists()) {
+            carnacoSolverX.saveResource("message_lang/en-US.yml", false);
+            carnacoSolverX.saveResource("message_lang/ru-RU.yml", false);
+            carnacoSolverX.saveResource("message_lang/ua-UA.yml", false);
+            carnacoSolverX.getLogger().warning("Resource " + lang + " not found in the plugin resources. Switching to EN-us.yml");
+            config.set("lang", "EN-us");
+            carnacoSolverX.saveConfig();
+        }
+        messageConfig = YamlConfiguration.loadConfiguration(messagesFile);
+    }
+
+    public enum MessageType {
+        CHATCOLOR,
+        PREFIX,
+        SUFFIX,
+        CONSOLE
+    }
+
+    public ConfigurationSection getLangYaml(String target) {
+        return messageConfig.getConfigurationSection(target);
     }
 
     public void saveStylesConfig() {
         try {
             stylesConfig.save(stylesConfigFile);
         } catch (IOException e) {
-            logger.severe("Не удалось сохранить player-styles.yml!");
-            logger.severe("Произошла ошибка: " + e.getMessage());
+            logger.severe("Failed to save player-styles.yml!");
+            logger.severe(e.getMessage());
         }
     }
 
@@ -121,10 +147,33 @@ public class ChatManager implements Listener {
         return miniMessage.deserialize(from);
     }
 
+    public static String placeHolder(String from, MessageType type, String playerName, String placeHolder) {
+        String to = from;
+        if (type == MessageType.CHATCOLOR) {
+            to = from
+                    .replace("%chatColor%", placeHolder)
+                    .replace("%playerName%", playerName);
+        }
+        else if (type == MessageType.PREFIX) {
+            to = from
+                    .replace("%prefix%", placeHolder)
+                    .replace("%playerName%", playerName);
+        }
+        else if (type == MessageType.SUFFIX) {
+            to = from
+                    .replace("%suffix%", placeHolder)
+                    .replace("%playerName%", playerName);
+        }
+        else {
+            logger.severe("Invalid message type!");
+        }
+        return to;
+    }
+
     public Component getFormattedMessage(Player player, String message) {
         reloadStylesConfig();
         if (stylesConfig == null) {
-            logger.severe("Конфигурация стилей не была загружена!");
+            logger.severe("Styles config has not been loaded yet!");
             return color(message);
         }
         String playerName = player.getName();
@@ -146,7 +195,7 @@ public class ChatManager implements Listener {
     public void reloadTabList(Player player) {
         reloadStylesConfig();
         if (stylesConfig == null) {
-            logger.severe("Конфигурация стилей не была загружена!");
+            logger.severe("Styles config has not been loaded yet!");
         }
         String playerName = player.getName();
 

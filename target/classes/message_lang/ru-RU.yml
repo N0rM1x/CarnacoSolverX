@@ -1,0 +1,35 @@
+chatcolor_command:
+  # %playerName% - Ник игрока
+  # %chatColor% - Установленный цвет
+  usage: "&cИспользование: /chatcolor <set/clear> <игрок> [цвет чата]"
+  no_arguments: "&cВы должны указать действие (set/clear)."
+  no_playername: "&cВы должны указать имя игрока."
+  no_content: "&cВы должны указать цвет чата для игрока."
+  set_failed: "&cНе удалось установить цвет чата!"
+  set_success: "&aИгроку &f%playerName%&a успешно установлен цвет чата: &r%chatColor%⬛&a!"
+  clear_failed: "&cНе удалось убрать цвет чата!"
+  clear_success: "&aИгроку &f%playerName%&a успешно убран цвет чата!"
+
+prefix_command:
+  # %playerName% - Ник игрока
+  # %prefix% - Установленный префикс
+  usage: "&cИспользование: /prefix <set/clear> <игрок> [префикс]"
+  no_arguments: "&cВы должны указать действие (set/clear)."
+  no_playername: "&cВы должны указать имя игрока."
+  no_content: "&cВы должны указать префикс для игрока."
+  set_failed: "&cНе удалось установить префикс!"
+  set_success: "&aИгроку &f%playerName%&a успешно установлен префикс: &r%prefix%%playerName%&a!"
+  clear_failed: "&cНе удалось убрать префикс!"
+  clear_success: "&aИгроку &f%playerName%&a успешно убран префикс!"
+
+suffix_command:
+  # %playerName% - Ник игрока
+  # %suffix% - Установленный суффикс
+  usage: "&cИспользование: /suffix <set/clear> <игрок> [суффикс]"
+  no_arguments: "&cВы должны указать действие (set/clear)."
+  no_playername: "&cВы должны указать имя игрока."
+  no_content: "&cВы должны указать суффикс для игрока."
+  set_failed: "&cНе удалось установить суффикс!"
+  set_success: "&aИгроку &f%playerName%&a успешно установлен суффикс: &r%playerName%%suffix%&a!"
+  clear_failed: "&cНе удалось убрать суффикс!"
+  clear_success: "&aИгроку &f%playerName%&a успешно убран суффикс!"

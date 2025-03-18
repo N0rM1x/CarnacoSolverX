@@ -1,0 +1,35 @@
+chatcolor_command:
+  # %playerName% - Нік гравця
+  # %chatColor% - Встановлений колір
+  usage: "&cВикористання: /chatcolor <set/clear> <гравець> [колір чату]"
+  no_arguments: "&cВи маєте вказати дію (set/clear)."
+  no_playername: "&cВи маєте вказати ім'я гравця."
+  no_content: "&cВи маєте вказати колір чату для гравця."
+  set_failed: "&cНе вдалося встановити колір чату!"
+  set_success: "&aГравцеві &f%playerName%&a успішно встановлено колір чату: &r%chatColor%⬛&a!"
+  clear_failed: "&cНе вдалося прибрати колір чату!"
+  clear_success: "&aГравцеві &f%playerName%&a успішно прибрано колір чату!"
+
+prefix_command:
+  # %playerName% - Нік гравця
+  # %prefix% - Встановлений префікс
+  usage: "&cВикористання: /prefix <set/clear> <гравець> [префікс]"
+  no_arguments: "&cВи маєте вказати дію (set/clear)."
+  no_playername: "&cВи маєте вказати ім'я гравця."
+  no_content: "&cВи маєте вказати префікс для гравця."
+  set_failed: "&cНе вдалося встановити префікс!"
+  set_success: "&aГравцеві &f%playerName%&a успішно встановлено префікс: &r%prefix%%playerName%&a!"
+  clear_failed: "&cНе вдалося прибрати префікс!"
+  clear_success: "&aГравцеві &f%playerName%&a успішно прибрано префікс!"
+
+suffix_command:
+  # %playerName% - Нік гравця
+  # %suffix% - Встановлений суфікс
+  usage: "&cВикористання: /suffix <set/clear> <гравець> [суфікс]"
+  no_arguments: "&cВи маєте вказати дію (set/clear)."
+  no_playername: "&cВи маєте вказати ім'я гравця."
+  no_content: "&cВи маєте вказати суфікс для гравця."
+  set_failed: "&cНе вдалося встановити суфікс!"
+  set_success: "&aГравцеві &f%playerName%&a успішно встановлено суфікс: &r%playerName%%suffix%&a!"
+  clear_failed: "&cНе вдалося прибрати суфікс!"
+  clear_success: "&aГравцеві &f%playerName%&a успішно прибрано суфікс!"
